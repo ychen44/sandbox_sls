@@ -39,6 +39,12 @@ provider:
     appName: ${self:custom.appName}
     stage: ${self:custom.stage}
     owner: amber
+  vpc:
+    securityGroupIds:
+      - <VPC Security Group ID> # outputs from terraform 
+    subnetIds:
+      - < private subnet 1>
+      - <private subnet2>
 
 # package: 
 #   - ${file(resources/package.yaml}
