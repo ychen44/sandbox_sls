@@ -2,7 +2,6 @@ terraform {
     required_version = ">= 1.0.2 "
 
 }
-
 provider "aws" {
     region = "us-east-1"
 }

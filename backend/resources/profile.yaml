@@ -1,5 +1,5 @@
 getProfile:
-  handler: profile/main.main
+  handler: CRUD/profile/main.main
   events: 
     - http:
         path: /profile/{id}
