@@ -22,7 +22,7 @@ variable "cidr" {
 variable "available_azs" {
   type        = list
   description = "The available AZ's in the region."
-  default = ["us-east-1a", "us-east-1b"]
+  default = ["us-east-2a", "us-east-2b"]
 
 }
 
