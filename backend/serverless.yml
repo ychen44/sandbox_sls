@@ -41,10 +41,10 @@ provider:
     owner: amber
   vpc:
     securityGroupIds:
-      - <VPC Security Group ID> # outputs from terraform 
+      - sg-027f564a4479dd3f0
     subnetIds:
-      - < private subnet 1>
-      - <private subnet2>
+      - subnet-0e5a48e6ee7d98bfc
+      - subnet-06901a2caaaeadbe8
 
 # package: 
 #   - ${file(resources/package.yaml}
