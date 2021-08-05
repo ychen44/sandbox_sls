@@ -1,14 +1,17 @@
 Resources:
   usersTable:
-    Type: AWS::DynamoDB::Table
+    Type: 'AWS::DynamoDB::Table'
+    DeletionPolicy: Retain
     Properties:
-      TableName: usersTable
       AttributeDefinitions:
-        - AttributeName: email
+        -
+          AttributeName: id
           AttributeType: S
       KeySchema:
-        - AttributeName: email
+        -
+          AttributeName: id
           KeyType: HASH
       ProvisionedThroughput:
         ReadCapacityUnits: 1
         WriteCapacityUnits: 1
+      TableName: ${self:provider.environment.DYNAMODB_TABLE}

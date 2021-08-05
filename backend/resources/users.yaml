@@ -1,0 +1,19 @@
+createUser:
+  handler: CRUD/users/main.create
+  events: 
+    - http:
+        path: /users
+        method: post
+        cors: true
+
+getUser:
+  handler: CRUD/users/main.main
+  events: 
+    - http:
+        path: /user/{id}
+        method: get
+        cors: true
+        request:
+          parameters:
+            paths: 
+              id: true #reuqired 

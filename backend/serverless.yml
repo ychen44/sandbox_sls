@@ -29,7 +29,7 @@ provider:
   runtime: python3.8
   lambdaHashingVersion: 20201221
   stage: dev
-  region: us-east-1
+  region: us-east-2
   memorySize: 128
   environment:
     DYNAMODB_TABLE: ${self:service}-${self:provider.stage}
@@ -37,26 +37,31 @@ provider:
     STAGE: ${self:custom.stage}
     # LOG_LEVEL: ${self:custom.logLevel.${self:custom:stage}}
 
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - dynamodb:Query
-        - dynamodb:Scan
-        - dynamodb:GetItem
-        - dynamodb:PutItem
-        - dynamodb:UpdateItem
-        - dynamodb:DeleteItem
-      Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
+  iam:
+    role:
+      name: AWS-DynamoDB-role
+      path: /
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
+
   tags:
     appName: ${self:custom.appName}
     stage: ${self:custom.stage}
     owner: amber
   vpc:
     securityGroupIds:
-      - sg-027f564a4479dd3f0
+      - sg-03d0aa1e75554d99e
     subnetIds:
-      - subnet-0e5a48e6ee7d98bfc
-      - subnet-06901a2caaaeadbe8
+      - subnet-0dd961ce7ed313af1
+      - subnet-0fec0ad1814d876ae
 
 # package: 
 #   - ${file(resources/package.yaml}
@@ -66,7 +71,7 @@ resources:
   - ${file(resources/dynamo_db.yaml)}
 
 functions:
-  - ${file(resources/profile.yaml)}
+  - ${file(resources/users.yaml)}
 
 
 plugins:
